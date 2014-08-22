@@ -28,8 +28,11 @@
     <nav>
       <div class="container">
            <ul style="height:30px; margin-top:5px;margin-left:-20px;list-style: none;" class="navbar-nav">
+              <li style="margin-right:10px"><a href="#">Home</a></li>
+              <li style="margin-right:10px"><a href="#">Check In</a></li>
+              <li style="margin-right:10px"><a href="#">Jelajah</a></li>              
               <li class="dropdown">
-                <a style="height:30px; margin-right:10px;margin-top:-10px" href="#" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                <a style="height:30px; margin-right:10px;margin-top:-10px" href="#" data-toggle="dropdown">Permainan <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <li><a href="#">Action</a></li>
                   <li><a href="#">Another action</a></li>
@@ -40,18 +43,7 @@
                   <li><a href="#">One more separated link</a></li>
                 </ul>
               </li>
-              <li class="dropdown">
-                <a style="height:30px;" href="#" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Action</a></li>
-                  <li><a href="#">Another action</a></li>
-                  <li><a href="#">Something else here</a></li>
-                  <li class="divider"></li>
-                  <li class="dropdown-header">Nav header</li>
-                  <li><a href="#">Separated link</a></li>
-                  <li><a href="#">One more separated link</a></li>
-                </ul>
-              </li>
+              <li style="margin-right:10px"><a href="#">Bantuan</a></li>
            </ul>
       </div>
     </nav>
