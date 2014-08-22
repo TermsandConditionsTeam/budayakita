@@ -1,6 +1,5 @@
 <?php
   session_start();
-  $_SESSION['username'] = "tomtom";
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +36,7 @@
               else
                 echo $_SESSION['username'].'
                       </div>
-                      <ul style="list-style:none;">
+                      <ul style="list-style:none;" class="navbar-nav">
                         <li class="dropdown">
                           <a style="height:30px; margin-right:10px;margin-top:-10px" href="#" data-toggle="dropdown">Profile <b class="caret"></b></a>
                           <ul class="dropdown-menu">
@@ -50,6 +49,7 @@
                             <li><a href="#">One more separated link</a></li>
                           </ul>
                         </li>
+                        <li style="margin-right:10px"><a href="#">Logout</a></li>
                       </ul>
                   ';
             ?>
