@@ -30,7 +30,19 @@
               {
                 echo 'Visitor
                       </div>
-                      <a href="">Masuk</a> | <a href="">Daftar</a>   
+                      <ul style="list-style:none;" class="navbar-nav">
+                        <li class="dropdown">
+                          <a style="height:30px; margin-left:-40px;margin-right:10px;margin-top:-30px" href="#" data-toggle="dropdown">Masuk</a>
+                          <div style="margin-left:-60px;width:300px;margin-top:19px;padding:10px 20px;background:green;border:none;" class="dropdown-menu">
+                            <form name="login" action="login.php" autocomplete="off" role="form" method="post">
+                              <input style="height:35px;margin-bottom:10px;" name="username" id="username" type="text" class="form-control" placeholder="Username" required autofocus>
+                              <input style="height:35px;margin-bottom:10px;" name="pass" id="pass" type="password" class="form-control" placeholder="Password" required>
+                              <button id="subsub" style="height:35px;line-height: 10px;" class="btn btn-lg btn-primary btn-block" type="submit">Masuk</button>
+                            </form>
+                          </div>
+                        </li>
+                        <li style="margin-right:10px"><a id="daftar" href="#">Daftar</a></li>
+                       </ul> 
                 ';
               }
               else
@@ -59,7 +71,7 @@
     <nav>
       <div class="container">
            <ul style="height:30px; margin-top:5px;margin-left:-20px;list-style: none;" class="navbar-nav">
-              <li style="margin-right:10px"><a href="#">Home</a></li>
+              <li style="margin-right:10px"><a href="index.php">Home</a></li>
               <li style="margin-right:10px"><a href="#">Check In</a></li>
               <li style="margin-right:10px"><a href="#">Jelajah</a></li>              
               <li class="dropdown">
@@ -79,7 +91,7 @@
       </div>
     </nav>
 
-    <div class="content">
+    <div id="contents" class="content">
       <div class="container">
         <div class="isi">
           <img src="a" width="970px"; height="400px";>
@@ -118,5 +130,10 @@
 
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+      $("#daftar").click(function(){
+          $("#contents").load("registerForm.php");
+        });
+    </script>
   </body>
 </html>
