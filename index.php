@@ -12,6 +12,7 @@
     <!--link rel="shortcut icon" href="../../assets/ico/favicon.ico"-->
     <title>Budaya Kita</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
     <link href="custom.css" rel="stylesheet">
     
 
@@ -50,7 +51,7 @@
               {
                 echo $_SESSION['fname'].' '.$_SESSION['lname'].' !
                       </div>
-                      <ul style="list-style:none;" class="navbar-nav">
+                      <ul style="list-style:none; margin-left:-40px;" class="navbar-nav">
                         <li class="dropdown">
                           <a style="height:30px; margin-right:10px;margin-top:-10px" href="#" data-toggle="dropdown">Profile <b class="caret"></b></a>
                           <ul class="dropdown-menu">
@@ -76,7 +77,7 @@
            <ul style="height:30px; margin-top:10px;margin-left:-20px;list-style: none;" class="navbar-nav">
               <li style="margin-right:10px"><a href="index.php">Home</a></li>
               <li style="margin-right:10px"><a href="#">Check In</a></li>
-              <li style="margin-right:10px"><a href="#">Jelajah</a></li>              
+              <li style="margin-right:10px"><a id="jelajah" href="#">Jelajah</a></li>              
               <li class="dropdown">
                 <a style="height:30px; margin-right:10px;margin-top:-10px" href="#" data-toggle="dropdown">Permainan <b class="caret"></b></a>
                 <ul style="margin-top:10px;border:none;background:#ffcc00;" class="dropdown-menu">
@@ -171,9 +172,13 @@
 
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
     <script type="text/javascript">
       $("#daftar").click(function(){
           $("#contents").load("registerForm.php");
+        });
+      $("#jelajah").click(function(){
+          $("#contents").load("jelajah.php");
         });
     </script>
   </body>
