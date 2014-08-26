@@ -12,7 +12,7 @@
     <!--link rel="shortcut icon" href="../../assets/ico/favicon.ico"-->
     <title>Budaya Kita</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/custom.css" rel="stylesheet">
+    <link href="custom.css" rel="stylesheet">
     
 
   </head>
@@ -21,19 +21,19 @@
     <header>
       <div class="container">
         <div class="logo">
-          <img src="assets/images/a.png" width="300" height="86" >
+          <a href="index.php"><img style="margin-top:8px;" src="assets/images/logo.png" alt="Logo" /></a>
         </div>
         <div class="login">          
-          <div class="user">Welcome!, 
+          <div class="user">Selamat Datang,  
             <?php
               if(!isset($_SESSION['username']))
               {
-                echo 'Visitor
+                echo 'Pengunjung !
                       </div>
                       <ul style="list-style:none;" class="navbar-nav">
                         <li class="dropdown">
-                          <a style="height:30px; margin-left:-40px;margin-right:10px;margin-top:-30px" href="#" data-toggle="dropdown">Masuk</a>
-                          <div style="margin-left:-60px;width:300px;margin-top:19px;padding:10px 20px;background:green;border:none;" class="dropdown-menu">
+                          <a style="height:30px; margin-left:-40px;margin-right:10px;margin-top:-30px" href="#" onclick="document.findElementById("#username").focus(); data-toggle="dropdown">Masuk</a>
+                          <div style="margin-left:-60px;width:280px;margin-top:0px;padding:10px 20px;background:#990000;border:none;border-radius:10px;" class="dropdown-menu">
                             <form name="login" action="login.php" autocomplete="off" role="form" method="post">
                               <input style="height:35px;margin-bottom:10px;" name="username" id="username" type="text" class="form-control" placeholder="Username" required autofocus>
                               <input style="height:35px;margin-bottom:10px;" name="pass" id="pass" type="password" class="form-control" placeholder="Password" required>
@@ -41,12 +41,13 @@
                             </form>
                           </div>
                         </li>
+                        <li> | &nbsp</li>
                         <li style="margin-right:10px"><a id="daftar" href="#">Daftar</a></li>
                        </ul> 
                 ';
               }
               else
-                echo $_SESSION['username'].'
+                echo $_SESSION['username'].' !
                       </div>
                       <ul style="list-style:none;" class="navbar-nav">
                         <li class="dropdown">
@@ -70,7 +71,7 @@
     </header>
     <nav>
       <div class="container">
-           <ul style="height:30px; margin-top:5px;margin-left:-20px;list-style: none;" class="navbar-nav">
+           <ul style="height:30px; margin-top:10px;margin-left:-20px;list-style: none;" class="navbar-nav">
               <li style="margin-right:10px"><a href="index.php">Home</a></li>
               <li style="margin-right:10px"><a href="#">Check In</a></li>
               <li style="margin-right:10px"><a href="#">Jelajah</a></li>              
@@ -94,7 +95,40 @@
     <div id="contents" class="content">
       <div class="container">
         <div class="isi">
-          <img src="a" width="970px"; height="400px";>
+          <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+              <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+              <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+              <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+              <div class="item active">
+                <img src="assets/images/foto1.png" width="930px" alt="foto1">
+                <div class="carousel-caption">
+                  <h3>caption 1</h3>
+                  <p>caption 1</p>
+                </div>
+              </div>
+              <div class="item">
+                <img src="assets/images/foto1.png" width="930px" alt="foto2">
+                <div class="carousel-caption">
+                  <h3>caption 2</h3>
+                  <p>caption 2</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Controls -->
+            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+              <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+              <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -104,17 +138,17 @@
         <div class="row">
            <div class="col-xs-4">
             <div class="partner-item">
-              <img src="assets/images/partners/partner1.png" alt="">
+              <a href="#"><img src="assets/images/ft_jelajahbudaya.png" alt=""></a>
             </div> <!-- /.partner-item -->
            </div>
            <div class="col-xs-4">
             <div class="partner-item">
-              <img src="assets/images/partners/partner2.png" alt="">
+               <a href="#"><img src="assets/images/ft_mulaipermainan.png" alt=""></a>
             </div> <!-- /.partner-item -->
            </div>
            <div class="col-xs-4">
             <div class="partner-item">
-              <img src="assets/images/partners/partner3.png" alt="">
+               <a href="#"><img src="assets/images/ft_lencana.png" alt=""></a>
             </div> <!-- /.partner-item -->
            </div>
         </div>
@@ -126,6 +160,11 @@
         a
       </div>
     </footer>
+    <div class="footer2">
+      <div class="container">
+        a
+      </div>
+    </div>
 
 
     <script src="js/jquery.min.js"></script>
