@@ -1,0 +1,117 @@
+      header
+      {
+        padding-left: 20px;
+        padding-top: 0;
+        padding-right: 20px;
+        padding-bottom: 0px;
+        min-width: 1280px;
+        min-height: 130px;
+        background:url("assets/images/header.png") repeat;
+      }
+      nav
+      {
+        padding-left: 20px;
+        padding-top: 0;
+        padding-right: 20px;
+        padding-bottom: 0px;
+        min-width: 1280px;
+        min-height: 40px;
+        background:url("assets/images/menu.png") repeat;
+      }
+      .container
+      {
+        width: 970px;
+        
+      }
+      .logo
+      {
+        padding: 10px 20px;
+        float:left;
+        
+        width: 340px;
+        height: 100%;
+      }
+      .login
+      {
+        height: 95px;
+        width: 280px;
+        float:right;
+        padding: 10px 20px;
+        background: #990000;
+        margin-top: 20px;
+        border-radius: 10px;
+      }
+      .user
+      {
+        margin-top: 15px;
+        margin-bottom:10px;
+        font-size: 14px;
+      }
+      .content
+      {
+        margin-top: 20px;
+        padding-left: 20px;
+        padding-top: 0;
+        padding-right: 20px;
+        padding-bottom: 0px;
+        min-width: 1200px;
+        
+      }
+      .fitur
+      {
+        margin-top: 20px;
+        margin-bottom: 30px;
+        padding-left: 20px;
+        padding-top: 0;
+        padding-right: 20px;
+        padding-bottom: 0px;
+        min-width: 1200px;
+       
+      }
+
+      .partner-item {
+          padding-left: 20px;
+          padding-top: 30px;
+          padding-bottom: 30px;
+      }
+
+      .partner-item img {
+          display: block;
+          margin: 0 auto;
+      }
+
+      .partner-item.last {
+          padding-left: 0;
+      }
+
+      footer
+      {
+        padding-left: 20px;
+        padding-top: 0;
+        padding-right: 20px;
+        padding-bottom: 0px;
+        min-width: 1280px;
+        min-height: 100px;
+        background:url("assets/images/footer.png") repeat;
+        bottom: 0;
+      }
+      .footer2
+      {
+        padding-left: 20px;
+        padding-top: 0;
+        padding-right: 20px;
+        padding-bottom: 0px;
+        min-width: 1280px;
+        min-height: 40px;
+        background:url("assets/images/footer2.png") repeat;
+        bottom: 0;
+      }
+      a:focus,a:hover
+      {
+        outline: none;
+      }
+      .isi
+      {
+        min-width: 900px;
+        margin-left: 20px;
+      }
