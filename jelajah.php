@@ -4,21 +4,31 @@
 			<!-- Modal -->
 			<div id="myModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 			  <div class="modal-dialog modal-lg">
-			    <div style="height:400px;background:grey;margin-left:33px;margin-top:20%;" class="modal-content">
-			    	<div style="margin-left:33px;" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-				      <div class="container-fluid">
-				        <div class="navbar-header">
-				          <a class="navbar-brand" href="#">Project name</a>
-				        </div>
-				      </div>
-				    </div>
-			    	<div style="height:385px;margin-top:10px;margin-left:6px;border-right: thick double #373737;" class="col-sm-3 col-md-2 sidebar">
-					    <ul style="margin-top:40px;" class="nav nav-sidebar">
-					        <li><a style="color:white;margin-right:7px;" href="#">Sejarah</a></li>
-					        <li><a style="color:white;margin-right:7px;" href="#">Events</a></li>
-					        <li><a style="color:white;margin-right:7px;" href="#">Galeri Foto</a></li>
-					        <li><a style="color:white;margin-right:7px;" href="#">Video</a></li>
-					    </ul>
+			    <div style="height:400px;background:grey;margin-left:33px;margin-top:18%;" class="modal-content">
+			    	<div style="margin-left:33px;border-radius: 3px 3px 0px 0px; " class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+					    <div class="container-fluid">
+					    	<div class="navbar-header">
+					        	<a id="nameBudaya" class="navbar-brand" href="#"></a>
+					        </div>
+					    </div>
+					</div>
+					<div class="container-fluid">
+					    <div class="row">
+					        <div style="border-bottom-left-radius:5px;border-right: 5px solid red;margin-left:34px;" class="col-sm-3 col-md-2 sidebar">
+					        	<ul class="nav nav-sidebar">
+						            <li><a id="sejarah" style="margin-right:5px;" href="#">Sejarah</a></li>
+						            <li><a id="event" style="margin-right:9px;" href="#">Event</a></li>
+						            <li><a id="gal" style="margin-right:9px;" href="#">Galery Foto</a></li>
+						            <li><a id="vd" style="margin-right:9px;" href="#">Video</a></li>
+					          	</ul>
+					        </div>
+					        <div style="margin-top:60px;" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+						        <div class="row placeholders">
+						        	<div id="budayaConts" style="margin-left:-70px;" class="col-xs-6 col-sm-3 placeholder">
+						            </div>
+						        </div>
+					        </div>
+					    </div>
 					</div>
 			    </div>
 			  </div>
@@ -79,6 +89,9 @@ var geoJson2 =[{
         "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/NYC_Top_of_the_Rock_Pano.jpg/640px-NYC_Top_of_the_Rock_Pano.jpg",
         "url": "https://en.wikipedia.org/wiki/New_York_City",
         "marker-color": "#ff8888",
+        "sejarah" : "sejarah",
+        "event" : "event",
+        "galery" : "galery",
         "video" : "aa",
         "jenis":"2",
         "city": "New York City"
@@ -90,6 +103,9 @@ var geoJson2 =[{
         "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/NYC_Top_of_the_Rock_Pano.jpg/640px-NYC_Top_of_the_Rock_Pano.jpg",
         "url": "https://en.wikipedia.org/wiki/New_York_City",
         "marker-color": "#ff8888",
+        "sejarah" : "sejarah",
+        "events" : "event</br><button type='submit'>Check In</button>",
+        "galery" : "galery",
         "video" : "bb",
         "jenis":"2",
         "city": "New York City"
@@ -102,19 +118,40 @@ myLayer.on('layeradd', function(e) {
         feature = marker.feature;
 
     // Create custom popup content
-    /*var popupContent =  '<iframe width="200" height="120"src="http://www.youtube.com/embed/SRN3bv9nB5U?autoplay=1&showinfo=0&controls=0" frameborder="0" ></iframe>';
+    var popupContent =  e.layer.feature.properties.city;
 
     // http://leafletjs.com/reference.html#popup
     marker.bindPopup(popupContent,{
-        closeButton: true,
-        minWidth: 900
-    });*/
+        closeButton: false,
+        maxWidth: 300
+    });
     e.layer.feature.geometry.coordinates.reverse();
+});
+
+myLayer.on('mouseover', function(e) {
+    e.layer.openPopup();
+});
+myLayer.on('mouseout', function(e) {
+    e.layer.closePopup();
 });
 
 myLayer.on('click',function(e){
 	if(e.layer.feature.properties.jenis==2)
 	{
+		$("#sejarah").click(function(){
+			$("#budayaConts").html(e.layer.feature.properties.sejarah);
+		});
+		$("#event").click(function(){
+			$("#budayaConts").html(e.layer.feature.properties.events);
+		});
+		$("#gal").click(function(){
+			$("#budayaConts").html(e.layer.feature.properties.galery);
+		});
+		$("#vd").click(function(){
+			$("#budayaConts").html(e.layer.feature.properties.video);
+		});
+
+		$('#nameBudaya').append(e.layer.feature.properties.city);
 		$('#myModal').modal('show'); 
 	}
 	
@@ -136,7 +173,6 @@ map.on('zoomend', function(e) {
 			    	myLayer.setGeoJSON(geoJson2);
 			    } 
 			});
-
 		</script>
 		<div class="pemberitahuan">
 			aaaaaaaaaaaaa
