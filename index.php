@@ -12,7 +12,8 @@
     <!--link rel="shortcut icon" href="../../assets/ico/favicon.ico"-->
     <title>Budaya Kita</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+    <script src='https://api.tiles.mapbox.com/mapbox.js/v2.0.1/mapbox.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox.js/v2.0.1/mapbox.css' rel='stylesheet' />
     <link href="custom.css" rel="stylesheet">
     
 
@@ -75,8 +76,7 @@
     <nav>
       <div class="container">
            <ul style="height:30px; margin-top:10px;margin-left:-20px;list-style: none;" class="navbar-nav">
-              <li style="margin-right:10px"><a href="index.php">Home</a></li>
-              <li style="margin-right:10px"><a href="#">Check In</a></li>
+              <li style="margin-right:10px;"><a href="index.php">Home</a></li>
               <li style="margin-right:10px"><a id="jelajah" href="#">Jelajah</a></li>              
               <li class="dropdown">
                 <a style="height:30px; margin-right:10px;margin-top:-10px" href="#" data-toggle="dropdown">Permainan <b class="caret"></b></a>
@@ -160,19 +160,20 @@
 
     <footer>
       <div class="container">
-        a
+       a
       </div>
     </footer>
     <div class="footer2">
       <div class="container">
-        a
+        <div style="color:white;padding:10px 20px;text-align: center;">
+          Copyright © 2014 Terms & Conditions Team
+        </div>        
       </div>
     </div>
 
 
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
     <script type="text/javascript">
       $("#daftar").click(function(){
           $("#contents").load("registerForm.php");
