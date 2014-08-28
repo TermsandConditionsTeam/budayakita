@@ -4,7 +4,7 @@
 			<!-- Modal -->
 			<div id="myModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 			  <div class="modal-dialog modal-lg">
-			    <div style="height:400px;background:grey;margin-left:33px;margin-top:18%;" class="modal-content">
+			    <div style="height:400px;background:grey;margin-left:33px;margin-top:10%;" class="modal-content">
 			    	<div style="margin-left:33px;border-radius: 3px 3px 0px 0px; " class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 					    <div class="container-fluid">
 					    	<div class="navbar-header">
@@ -151,7 +151,7 @@ myLayer.on('click',function(e){
 			$("#budayaConts").html(e.layer.feature.properties.video);
 		});
 
-		$('#nameBudaya').append(e.layer.feature.properties.city);
+		$('#nameBudaya').html(e.layer.feature.properties.city);
 		$('#myModal').modal('show'); 
 	}
 	
