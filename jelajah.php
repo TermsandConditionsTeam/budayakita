@@ -48,66 +48,94 @@ var geoJson1 = [{
     type: 'Feature',
     "geometry": { "type": "Point", "coordinates": [106.846,-6.20876]},
     "properties": {
-        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Cherry_Blossoms_and_Washington_Monument.jpg/320px-Cherry_Blossoms_and_Washington_Monument.jpg",
-        "url": "https://en.wikipedia.org/wiki/Washington,_D.C.",
-        "marker-symbol": "star",
-        "marker-color": "#ff8888",
-        "marker-size": "large",
         "jenis":"1",
+        "icon": {
+            "iconUrl": "assets/images/map-marker-kota(32xx).png",
+            "iconSize": [32, 43], // size of the icon
+            "iconAnchor": [16, 42], // point of the icon which will correspond to marker's location
+            "popupAnchor": [0, -40], // point from which the popup should open relative to the iconAnchor
+            "className": "dot"
+        },
         "city": "Washington, D.C."
     }
 }, {
     type: 'Feature',
     "geometry": { "type": "Point", "coordinates": [107.608,-6.91486]},
     "properties": {
-        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Chicago_sunrise_1.jpg/640px-Chicago_sunrise_1.jpg",
-        "url": "https://en.wikipedia.org/wiki/Chicago",
-        "marker-color": "#ff8888",
-         "marker-symbol": "star",
-         "marker-size": "large",
-         "jenis":"1",
+        "jenis":"1",
+        "icon": {
+            "iconUrl": "assets/images/map-marker-kota(32xx).png",
+            "iconSize": [32, 43], // size of the icon
+            "iconAnchor": [16, 42], // point of the icon which will correspond to marker's location
+            "popupAnchor": [0, -40], // point from which the popup should open relative to the iconAnchor
+            "className": "dot"
+        },
         "city": "Chicago"
     }
 }];
 
 var geoJson2 =[{
     type: 'Feature',
+    "geometry": { "type": "Point", "coordinates": [106.846,-6.20876]},
+    "properties": {
+        "jenis":"1",
+        "icon": {
+            "iconUrl": "assets/images/map-marker-kota(32xx).png",
+            "iconSize": [32, 43], // size of the icon
+            "iconAnchor": [16, 42], // point of the icon which will correspond to marker's location
+            "popupAnchor": [0, -40], // point from which the popup should open relative to the iconAnchor
+            "className": "dot"
+        },
+        "city": "Washington, D.C."
+    }
+}, {
+    type: 'Feature',
     "geometry": { "type": "Point", "coordinates": [107.608,-6.91486]},
     "properties": {
-        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Chicago_sunrise_1.jpg/640px-Chicago_sunrise_1.jpg",
-        "url": "https://en.wikipedia.org/wiki/Chicago",
-        "marker-color": "#ff8888",
-         "marker-symbol": "star",
-         "marker-size": "large",
-         "jenis":"1",
+        "jenis":"1",
+        "icon": {
+            "iconUrl": "assets/images/map-marker-kota(32xx).png",
+            "iconSize": [32, 43], // size of the icon
+            "iconAnchor": [16, 42], // point of the icon which will correspond to marker's location
+            "popupAnchor": [0, -40], // point from which the popup should open relative to the iconAnchor
+            "className": "dot"
+        },
         "city": "Chicago"
     }
-},{
+}, {
     type: 'Feature',
     "geometry": { "type": "Point", "coordinates": [106.895,-6.30245]},
     "properties": {
-        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/NYC_Top_of_the_Rock_Pano.jpg/640px-NYC_Top_of_the_Rock_Pano.jpg",
-        "url": "https://en.wikipedia.org/wiki/New_York_City",
-        "marker-color": "#ff8888",
         "sejarah" : "sejarah",
         "event" : "event",
         "galery" : "galery",
         "video" : "aa",
         "jenis":"2",
+        "icon": {
+            "iconUrl": "assets/images/map-marker-busana(32xx).png",
+            "iconSize": [32, 43], // size of the icon
+            "iconAnchor": [16, 42], // point of the icon which will correspond to marker's location
+            "popupAnchor": [0, -40], // point from which the popup should open relative to the iconAnchor
+            "className": "dot"
+        },
         "city": "New York City"
     }
 }, {
     type: 'Feature',
     "geometry": { "type": "Point", "coordinates":[107.655,-6.89797]},
     "properties": {
-        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/NYC_Top_of_the_Rock_Pano.jpg/640px-NYC_Top_of_the_Rock_Pano.jpg",
-        "url": "https://en.wikipedia.org/wiki/New_York_City",
-        "marker-color": "#ff8888",
         "sejarah" : "sejarah",
         "events" : "event</br><button type='submit'>Check In</button>",
         "galery" : "galery",
         "video" : "bb",
         "jenis":"2",
+        "icon": {
+            "iconUrl": "assets/images/map-marker-musik(32xx).png",
+            "iconSize": [32, 43], // size of the icon
+            "iconAnchor": [16, 42], // point of the icon which will correspond to marker's location
+            "popupAnchor": [0, -40], // point from which the popup should open relative to the iconAnchor
+            "className": "dot"
+        },
         "city": "New York City"
     }
 }];
@@ -121,6 +149,7 @@ myLayer.on('layeradd', function(e) {
     var popupContent =  e.layer.feature.properties.city;
 
     // http://leafletjs.com/reference.html#popup
+    marker.setIcon(L.icon(feature.properties.icon));
     marker.bindPopup(popupContent,{
         closeButton: false,
         maxWidth: 300
@@ -167,11 +196,15 @@ map.on('zoomend', function(e) {
 				if (map.getZoom() <= 5) {
 					myLayer.setGeoJSON(geoJson1);
 			    } 
-			    else 
+			    else if(map.getZoom() > 5)
 			    {
 			    	
 			    	myLayer.setGeoJSON(geoJson2);
-			    } 
+			    }
+                else{
+                    myLayer.setGeoJSON(geoJson1);    
+                }
+                
 			});
 		</script>
 		<div class="pemberitahuan">

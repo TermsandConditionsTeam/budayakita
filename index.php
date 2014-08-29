@@ -81,13 +81,7 @@
               <li class="dropdown">
                 <a style="height:30px; margin-right:10px;margin-top:-10px" href="#" data-toggle="dropdown">Permainan <b class="caret"></b></a>
                 <ul style="margin-top:10px;border:none;background:#ffcc00;" class="dropdown-menu">
-                  <li><a href="#">Action</a></li>
-                  <li><a href="#">Another action</a></li>
-                  <li><a href="#">Something else here</a></li>
-                  <li class="divider"></li>
-                  <li class="dropdown-header">Nav header</li>
-                  <li><a href="#">Separated link</a></li>
-                  <li><a href="#">One more separated link</a></li>
+                  <li><a href="#">Cari Permainan</a></li>
                 </ul>
               </li>
               <li style="margin-right:10px"><a href="#">Bantuan</a></li>
