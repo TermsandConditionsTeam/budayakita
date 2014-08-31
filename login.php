@@ -5,7 +5,7 @@
 	$email = $_POST['username'];
 	$pass = md5($_POST['pass']);
 
-	$qrlogin = "SELECT email, nama_depan, nama_belakang FROM user where email = '".$email."' AND password = '".$pass."'";
+	$qrlogin = "SELECT id_tab_user, email, nama_depan, nama_belakang,login_time FROM user where email = '".$email."' AND password = '".$pass."'";
 	$getUser = mysql_query($qrlogin);
 
 	$result=mysql_fetch_array($getUser);
@@ -15,7 +15,14 @@
 		$_SESSION['email']=$result['email'];
 		$_SESSION['fname']=$result['nama_depan'];
 		$_SESSION['lname']=$result['nama_belakang'];
-		header("location:index.php");
+		$_SESSION['login_time']=$result['login_time']+1;
+		$_SESSION['id_tab_user']=$result['id_tab_user'];
+		$qrTime = "UPDATE user SET login_time = ".$result['login_time']."+1 WHERE id_tab_user = ".$result['id_tab_user']." ";
+		$resultLogin =  mysql_query($qrTime);
+		if($resultLogin){
+			header("location:index.php");	
+		}
+		
 	}
 	else
 	{

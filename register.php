@@ -6,15 +6,26 @@
 	$lname = $_POST['lname'];
 	$password = md5($_POST['pass']);
 
-	$qrDaftar ="INSERT INTO user (password,email,nama_depan,nama_belakang)
-				values ('".$password."','".$email."','".$fname."','".$lname."')
+	$qrDaftar ="INSERT INTO user (password,email,nama_depan,nama_belakang,login_time)
+				values ('".$password."','".$email."','".$fname."','".$lname."',1)
 				";
-	$result = mysql_query($qrDaftar);
-	if($result)
+	//echo $qrDaftar;exit();
+	$resultDaftar = mysql_query($qrDaftar);
+	if($resultDaftar)
 	{
 		$_SESSION['email']=$email;
 		$_SESSION['fname']=$fname;
 		$_SESSION['lname']=$lname;
+		$_SESSION['login_time']=1;
+		$qrCari = "SELECT id_tab_user FROM user where email = '".$email."'";
+		$getCari = mysql_query($qrCari);
+
+		$resultCari=mysql_fetch_array($getCari);
+		$count=mysql_num_rows($getCari);
+		if($count == 1)
+		{
+			$_SESSION['id_tab_user']=$resultCari['id_tab_user'];
+		}
 		?>
 		<script type="text/javascript">
 			alert ('Daftar Berhasil');

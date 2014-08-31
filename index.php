@@ -1,7 +1,3 @@
-<?php
-  session_start();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -13,11 +9,51 @@
     <title>Budaya Kita</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <script src='https://api.tiles.mapbox.com/mapbox.js/v2.0.1/mapbox.js'></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
     <link href='https://api.tiles.mapbox.com/mapbox.js/v2.0.1/mapbox.css' rel='stylesheet' />
     <link href="custom.css" rel="stylesheet">
     
 
   </head>
+  <?php
+  include 'dbcon.php';
+  session_start();
+    if(isset($_SESSION['login_time']))
+    {
+      if ($_SESSION['login_time']==1) {
+        $qrFirst ="SELECT id_lencana, nama_lencana, nama_file_icon FROM lencana where id_lencana = 2";
+        $getFirst = mysql_query($qrFirst);
+        $resultFirst=mysql_fetch_array($getFirst);
+
+        if($resultFirst)
+        {
+          echo '<div id="myModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-sm">
+                  <div class="modal-content">
+                        <h3>Selamat, '.$_SESSION['fname'].' '.$_SESSION['lname'].'!</h3>
+                        Anda mendapatkan lencana '.$resultFirst['nama_lencana'].'.
+                        <img src="assets/images/badge/'.$resultFirst['nama_file_icon'].'.png" alt="">
+                  </div>
+                </div>
+              </div>
+                ';
+          
+          $qrAddLencanaSt ="INSERT INTO user_have_lencana (id_tab_user,id_lencana,tanggal)
+                            values ('".$_SESSION['id_tab_user']."','".$resultFirst['id_lencana']."',NOW())";
+          $resultbadgefirst = mysql_query($qrAddLencanaSt);
+          if($resultbadgefirst)
+          {
+            ?>
+              <script type="text/javascript">
+                $('#myModal').modal('show');
+              </script>
+            <?php
+          }
+        }
+      }
+    }
+?>
 
   <body>
     <header>
@@ -26,7 +62,7 @@
           <a href="index.php"><img style="margin-top:8px;" src="assets/images/logo.png" alt="Logo" /></a>
         </div>
         <div class="login">          
-          <div class="user">Selamat Datang,  
+          <div style="color:white;" class="user">Selamat Datang,  
             <?php
               if(!isset($_SESSION['email']))
               {
@@ -34,7 +70,7 @@
                       </div>
                       <ul style="list-style:none;" class="navbar-nav">
                         <li class="dropdown">
-                          <a style="height:30px; margin-left:-40px;margin-right:10px;margin-top:-30px" href="#"  data-toggle="dropdown">Masuk</a>
+                          <a style="color:#e8aa00;height:30px; margin-left:-40px;margin-right:10px;margin-top:-30px" href="#"  data-toggle="dropdown">Masuk</a>
                           <div style="margin-left:-60px;width:280px;margin-top:0px;padding:10px 20px;background:#990000;border:none;border-radius:10px;" class="dropdown-menu">
                             <form name="login" action="login.php" autocomplete="off" role="form" method="post">
                               <input style="height:35px;margin-bottom:10px;" name="username" id="username" type="text" class="form-control" placeholder="Email" required autofocus>
@@ -44,7 +80,7 @@
                           </div>
                         </li>
                         <li> | &nbsp</li>
-                        <li style="margin-right:10px"><a id="daftar" href="#">Daftar</a></li>
+                        <li style="margin-right:10px"><a style="color:#e8aa00;" id="daftar" href="#">Daftar</a></li>
                        </ul> 
                 ';
               }
@@ -76,15 +112,15 @@
     <nav>
       <div class="container">
            <ul style="height:30px; margin-top:10px;margin-left:-20px;list-style: none;" class="navbar-nav">
-              <li style="margin-right:10px;"><a href="index.php">Home</a></li>
-              <li style="margin-right:10px"><a id="jelajah" href="#">Jelajah</a></li>              
+              <li style="margin-right:10px;"><a style=" color:white;" href="index.php">Home</a></li>
+              <li style="margin-right:10px"><a style=" color:white;" id="jelajah" href="#">Jelajah</a></li>              
               <li class="dropdown">
-                <a style="height:30px; margin-right:10px;margin-top:-10px" href="#" data-toggle="dropdown">Permainan <b class="caret"></b></a>
+                <a style="height:30px; margin-right:10px;color:white;margin-top:-10px" href="#" data-toggle="dropdown">Permainan <b class="caret"></b></a>
                 <ul style="margin-top:10px;border:none;background:#ffcc00;" class="dropdown-menu">
-                  <li><a href="#">Cari Permainan</a></li>
+                  <li><a style="color:white"; href="#">Cari Permainan</a></li>
                 </ul>
               </li>
-              <li style="margin-right:10px"><a href="#">Bantuan</a></li>
+              <li style="margin-right:10px"><a style="color:white;" href="#">Bantuan</a></li>
            </ul>
       </div>
     </nav>
@@ -164,10 +200,6 @@
         </div>        
       </div>
     </div>
-
-
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
     <script type="text/javascript">
       $("#daftar").click(function(){
           $("#contents").load("registerForm.php");
