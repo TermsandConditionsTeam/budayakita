@@ -19,6 +19,7 @@
   <?php
   include 'dbcon.php';
   session_start();
+   $new = false;
     if(isset($_SESSION['login_time']))
     {
       if ($_SESSION['login_time']==1) {
@@ -28,12 +29,14 @@
 
         if($resultFirst)
         {
-          echo '<div id="myModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+          echo '<div id="lencanaFirst" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-sm">
                   <div class="modal-content">
-                        <h3>Selamat, '.$_SESSION['fname'].' '.$_SESSION['lname'].'!</h3>
-                        Anda mendapatkan lencana '.$resultFirst['nama_lencana'].'.
-                        <img src="assets/images/badge/'.$resultFirst['nama_file_icon'].'.png" alt="">
+                      <div style="padding:10px 20px">
+                        <h3 style="text-align: center;">Selamat, '.$_SESSION['fname'].' '.$_SESSION['lname'].'!</h3>
+                        <span  style="text-align:center;">Anda mendapatkan lencana '.$resultFirst['nama_lencana'].'.</span>
+                        <img style="margin-left:25px;" src="assets/images/badge/'.$resultFirst['nama_file_icon'].'.png" width="200px" height="200px" alt="">
+                      </div>
                   </div>
                 </div>
               </div>
@@ -46,7 +49,7 @@
           {
             ?>
               <script type="text/javascript">
-                $('#myModal').modal('show');
+                $('#lencanaFirst').modal('show');
               </script>
             <?php
           }
