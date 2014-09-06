@@ -36,91 +36,13 @@
 
 		</div>
 		<script>
-
-            var qurl = "getData.php";
-            var dtkirim = {"req":"1"};
-            var request =  $.ajax({
-                            url: qurl,
-                            data: dtkirim,
-                            type: "POST",
-                            crossDomain: true,
-                            dataType: "text",
-                        });
-            request.success(function(resp){
+            var geoJson1 = reqData('1');
+            var geoJson2 = geoJson1.concat(reqData('2'));
                 L.mapbox.accessToken = 'pk.eyJ1IjoicmlmcWl0aG9taSIsImEiOiJpUjFieHdVIn0.Cz3ME0XeH01-5IRnCJl3SA';
                 var map = L.mapbox.map('map', 'rifqithomi.jb5ibjeg')
                     .setView([-1.527, 118.215], 5);
 
                 var myLayer = L.mapbox.featureLayer().addTo(map);
-                var geoJson1 =JSON.parse(resp);
-
-
-
-                var geoJson2 =[{
-                    type: 'Feature',
-                    "geometry": { "type": "Point", "coordinates": [106.846,-6.20876]},
-                    "properties": {
-                        "jenis":"1",
-                        "icon": {
-                            "iconUrl": "assets/images/map-marker-kota(32xx).png",
-                            "iconSize": [32, 43], // size of the icon
-                            "iconAnchor": [16, 42], // point of the icon which will correspond to marker's location
-                            "popupAnchor": [0, -40], // point from which the popup should open relative to the iconAnchor
-                            "className": "dot"
-                        },
-                        "city": "DKI Jakarta"
-                    }
-                }, {
-                    type: 'Feature',
-                    "geometry": { "type": "Point", "coordinates": [107.608,-6.91486]},
-                    "properties": {
-                        "jenis":"1",
-                        "icon": {
-                            "iconUrl": "assets/images/map-marker-kota(32xx).png",
-                            "iconSize": [32, 43], // size of the icon
-                            "iconAnchor": [16, 42], // point of the icon which will correspond to marker's location
-                            "popupAnchor": [0, -40], // point from which the popup should open relative to the iconAnchor
-                            "className": "dot"
-                        },
-                        "city": "Jawa Barat"
-                    }
-                }, {
-                    type: 'Feature',
-                    "geometry": { "type": "Point", "coordinates": [106.895,-6.30245]},
-                    "properties": {
-                        "sejarah" : "sejarah",
-                        "event" : "event",
-                        "galery" : "galery",
-                        "video" : "aa",
-                        "jenis":"2",
-                        "icon": {
-                            "iconUrl": "assets/images/map-marker-busana(32xx).png",
-                            "iconSize": [32, 43], // size of the icon
-                            "iconAnchor": [16, 42], // point of the icon which will correspond to marker's location
-                            "popupAnchor": [0, -40], // point from which the popup should open relative to the iconAnchor
-                            "className": "dot"
-                        },
-                        "city": "TMII"
-                    }
-                }, {
-                    type: 'Feature',
-                    "geometry": { "type": "Point", "coordinates":[107.655,-6.89797]},
-                    "properties": {
-                        "sejarah" : "sejarah",
-                        "events" : "event</br><button type='submit'>Check In</button>",
-                        "galery" : "galery",
-                        "video" : "bb",
-                        "jenis":"2",
-                        "icon": {
-                            "iconUrl": "assets/images/map-marker-musik(32xx).png",
-                            "iconSize": [32, 43], // size of the icon
-                            "iconAnchor": [16, 42], // point of the icon which will correspond to marker's location
-                            "popupAnchor": [0, -40], // point from which the popup should open relative to the iconAnchor
-                            "className": "dot"
-                        },
-                        "city": "Saung Ujo"
-                    }
-                }];
 
                 // Add custom popups to each using our custom feature properties
                 myLayer.on('layeradd', function(e) {
@@ -183,9 +105,28 @@
                                     myLayer.setGeoJSON(geoJson2);
                                 }
                                 
-                            });
-                            });
-			
+                });
+
+
+           function reqData(reqNumber){
+                var data;
+                var qurl = "getData.php";
+                var dtkirim = {"req":reqNumber};
+                $.ajax({
+                            url: qurl,
+                            data: dtkirim,
+                            async: false,
+                            type: "POST",
+                            crossDomain: true,
+                            dataType: "text",
+                            success: function (resp)
+                              {
+                                  data = JSON.parse(resp);
+                              }
+                        });
+                return data;
+                
+            }
 
 		</script>
         <div class="pemberitahuan">
