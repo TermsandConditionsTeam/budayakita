@@ -38,6 +38,7 @@
 		<script>
             var geoJson1 = reqData('1');
             var geoJson2 = geoJson1.concat(reqData('2'));
+
                 L.mapbox.accessToken = 'pk.eyJ1IjoicmlmcWl0aG9taSIsImEiOiJpUjFieHdVIn0.Cz3ME0XeH01-5IRnCJl3SA';
                 var map = L.mapbox.map('map', 'rifqithomi.jb5ibjeg')
                     .setView([-1.527, 118.215], 5);
@@ -81,7 +82,7 @@
                             $("#budayaConts").html(e.layer.feature.properties.events);
                         });
                         $("#gal").click(function(){
-                            $("#budayaConts").html(e.layer.feature.properties.galery);
+                            $("#budayaConts").html(e.layer.feature.properties.galery[0].nama_gallery);
                         });
                         $("#vd").click(function(){
                             $("#budayaConts").html(e.layer.feature.properties.video);

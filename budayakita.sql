@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Waktu pembuatan: 04. September 2014 jam 08:24
--- Versi Server: 5.5.16
--- Versi PHP: 5.3.8
+-- Generation Time: Sep 06, 2014 at 04:35 PM
+-- Server version: 5.5.16
+-- PHP Version: 5.3.8
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -23,7 +23,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `budaya`
+-- Table structure for table `budaya`
 --
 
 CREATE TABLE IF NOT EXISTS `budaya` (
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `budaya` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
--- Dumping data untuk tabel `budaya`
+-- Dumping data for table `budaya`
 --
 
 INSERT INTO `budaya` (`id_budaya`, `nama_budaya`, `lat_bud`, `long_bud`, `sejarah`, `nama_file_video`, `id_kategori`, `id_provinsi`) VALUES
@@ -51,7 +51,7 @@ INSERT INTO `budaya` (`id_budaya`, `nama_budaya`, `lat_bud`, `long_bud`, `sejara
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `chekin`
+-- Table structure for table `chekin`
 --
 
 CREATE TABLE IF NOT EXISTS `chekin` (
@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `chekin` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `comment_bud`
+-- Table structure for table `comment_bud`
 --
 
 CREATE TABLE IF NOT EXISTS `comment_bud` (
@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `comment_bud` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `comment_per`
+-- Table structure for table `comment_per`
 --
 
 CREATE TABLE IF NOT EXISTS `comment_per` (
@@ -101,7 +101,7 @@ CREATE TABLE IF NOT EXISTS `comment_per` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `event`
+-- Table structure for table `event`
 --
 
 CREATE TABLE IF NOT EXISTS `event` (
@@ -114,7 +114,7 @@ CREATE TABLE IF NOT EXISTS `event` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
--- Dumping data untuk tabel `event`
+-- Dumping data for table `event`
 --
 
 INSERT INTO `event` (`id_event`, `nama_event`, `tanggal`, `id_budaya`) VALUES
@@ -123,7 +123,7 @@ INSERT INTO `event` (`id_event`, `nama_event`, `tanggal`, `id_budaya`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `gallery`
+-- Table structure for table `gallery`
 --
 
 CREATE TABLE IF NOT EXISTS `gallery` (
@@ -134,12 +134,22 @@ CREATE TABLE IF NOT EXISTS `gallery` (
   `id_budaya` int(11) NOT NULL,
   PRIMARY KEY (`id_gallery`),
   KEY `id_budaya` (`id_budaya`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `gallery`
+--
+
+INSERT INTO `gallery` (`id_gallery`, `nama_file_gallery`, `nama_gallery`, `tanggal`, `id_budaya`) VALUES
+(1, 'IMG_1515', 'Pembukaan Direktur Saung Udjo', '2014-09-05', 2),
+(2, 'IMG_1520', 'Pembukaan dari ''t Magisch Theatertje', '2014-09-05', 2),
+(3, 'IMG_1529', 'Witch sedang berbicara pada Gago', '2014-09-05', 2),
+(4, 'IMG_1533', 'Pemberian apresiasi dari Saung Udjo', '2014-09-05', 2);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kategori`
+-- Table structure for table `kategori`
 --
 
 CREATE TABLE IF NOT EXISTS `kategori` (
@@ -150,17 +160,17 @@ CREATE TABLE IF NOT EXISTS `kategori` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
--- Dumping data untuk tabel `kategori`
+-- Dumping data for table `kategori`
 --
 
 INSERT INTO `kategori` (`id_kategori`, `nama_kategori`, `nama_file_icon`) VALUES
-(1, 'Museum', ''),
-(2, 'Seni Musik', '');
+(1, 'Museum', 'map-marker-building(32xx)'),
+(2, 'Seni Musik', 'map-marker-busana(32xx)');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `lencana`
+-- Table structure for table `lencana`
 --
 
 CREATE TABLE IF NOT EXISTS `lencana` (
@@ -171,7 +181,7 @@ CREATE TABLE IF NOT EXISTS `lencana` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
--- Dumping data untuk tabel `lencana`
+-- Dumping data for table `lencana`
 --
 
 INSERT INTO `lencana` (`id_lencana`, `nama_lencana`, `nama_file_icon`) VALUES
@@ -181,7 +191,7 @@ INSERT INTO `lencana` (`id_lencana`, `nama_lencana`, `nama_file_icon`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `permainan`
+-- Table structure for table `permainan`
 --
 
 CREATE TABLE IF NOT EXISTS `permainan` (
@@ -202,7 +212,7 @@ CREATE TABLE IF NOT EXISTS `permainan` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `provinsi`
+-- Table structure for table `provinsi`
 --
 
 CREATE TABLE IF NOT EXISTS `provinsi` (
@@ -215,7 +225,7 @@ CREATE TABLE IF NOT EXISTS `provinsi` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
 
 --
--- Dumping data untuk tabel `provinsi`
+-- Dumping data for table `provinsi`
 --
 
 INSERT INTO `provinsi` (`id_provinsi`, `nama_provinsi`, `nama_ibukota`, `lat`, `long`) VALUES
@@ -242,7 +252,7 @@ INSERT INTO `provinsi` (`id_provinsi`, `nama_provinsi`, `nama_ibukota`, `lat`, `
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE IF NOT EXISTS `user` (
@@ -254,23 +264,24 @@ CREATE TABLE IF NOT EXISTS `user` (
   `login_time` int(11) NOT NULL,
   PRIMARY KEY (`id_tab_user`),
   KEY `id_tab_user` (`id_tab_user`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=25 ;
 
 --
--- Dumping data untuk tabel `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`password`, `email`, `nama_depan`, `nama_belakang`, `id_tab_user`, `login_time`) VALUES
-('d1143b3cd3a2c73f06cc9a9a8cd86a16', 'rifqithomigame@gmail.com', 'rifqi', 'thomi', 15, 2),
+('d1143b3cd3a2c73f06cc9a9a8cd86a16', 'rifqithomigame@gmail.com', 'rifqi', 'thomi', 15, 4),
 ('d1143b3cd3a2c73f06cc9a9a8cd86a16', 'ahmadrosyq@gmail.com', 'ahmad', 'rosyiq', 16, 1),
 ('d1143b3cd3a2c73f06cc9a9a8cd86a16', 'rifqithomigame@yahoo.com', 'rey', 'zenki', 17, 2),
 ('d1143b3cd3a2c73f06cc9a9a8cd86a16', 'rifqithomi@gmail.com', 'rifqi', 'thomi', 22, 3),
-('d1143b3cd3a2c73f06cc9a9a8cd86a16', 'rifqithomi@yahoo.co.id', 'rifqi', 'thomi', 23, 1);
+('d1143b3cd3a2c73f06cc9a9a8cd86a16', 'rifqithomi@yahoo.co.id', 'rifqi', 'thomi', 23, 1),
+('d1143b3cd3a2c73f06cc9a9a8cd86a16', 'rifqithomi@live.com', 'rifqi', 'thomi', 24, 1);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user_have_lencana`
+-- Table structure for table `user_have_lencana`
 --
 
 CREATE TABLE IF NOT EXISTS `user_have_lencana` (
@@ -283,7 +294,7 @@ CREATE TABLE IF NOT EXISTS `user_have_lencana` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `user_have_lencana`
+-- Dumping data for table `user_have_lencana`
 --
 
 INSERT INTO `user_have_lencana` (`id_tab_user`, `id_lencana`, `tanggal`) VALUES
@@ -291,60 +302,61 @@ INSERT INTO `user_have_lencana` (`id_tab_user`, `id_lencana`, `tanggal`) VALUES
 (16, 2, '2014-08-31'),
 (17, 2, '2014-08-31'),
 (22, 2, '2014-09-01'),
-(23, 2, '2014-09-02');
+(23, 2, '2014-09-02'),
+(24, 2, '2014-09-04');
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `budaya`
+-- Constraints for table `budaya`
 --
 ALTER TABLE `budaya`
   ADD CONSTRAINT `fk_kat1` FOREIGN KEY (`id_kategori`) REFERENCES `kategori` (`id_kategori`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_prov1` FOREIGN KEY (`id_provinsi`) REFERENCES `provinsi` (`id_provinsi`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `chekin`
+-- Constraints for table `chekin`
 --
 ALTER TABLE `chekin`
   ADD CONSTRAINT `fk_bud4` FOREIGN KEY (`id_budaya`) REFERENCES `budaya` (`id_budaya`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_us4` FOREIGN KEY (`id_tab_user`) REFERENCES `user` (`id_tab_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `comment_bud`
+-- Constraints for table `comment_bud`
 --
 ALTER TABLE `comment_bud`
   ADD CONSTRAINT `fk_bud5` FOREIGN KEY (`id_budaya`) REFERENCES `budaya` (`id_budaya`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_us3` FOREIGN KEY (`id_tab_user`) REFERENCES `user` (`id_tab_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `comment_per`
+-- Constraints for table `comment_per`
 --
 ALTER TABLE `comment_per`
   ADD CONSTRAINT `fk_per` FOREIGN KEY (`id_permainan`) REFERENCES `permainan` (`id_permainan`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_us2` FOREIGN KEY (`id_tab_user`) REFERENCES `user` (`id_tab_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `event`
+-- Constraints for table `event`
 --
 ALTER TABLE `event`
   ADD CONSTRAINT `fk_bud2` FOREIGN KEY (`id_budaya`) REFERENCES `budaya` (`id_budaya`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `gallery`
+-- Constraints for table `gallery`
 --
 ALTER TABLE `gallery`
   ADD CONSTRAINT `fk_bud1` FOREIGN KEY (`id_budaya`) REFERENCES `budaya` (`id_budaya`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `permainan`
+-- Constraints for table `permainan`
 --
 ALTER TABLE `permainan`
   ADD CONSTRAINT `fk_us1` FOREIGN KEY (`id_tab_user`) REFERENCES `user` (`id_tab_user`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `user_have_lencana`
+-- Constraints for table `user_have_lencana`
 --
 ALTER TABLE `user_have_lencana`
   ADD CONSTRAINT `fk_len` FOREIGN KEY (`id_lencana`) REFERENCES `lencana` (`id_lencana`) ON DELETE CASCADE ON UPDATE CASCADE,

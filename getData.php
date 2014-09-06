@@ -85,13 +85,14 @@
 			//get Gallery
 			$qrGal = "SELECT * 
 						FROM gallery
-						WHERE id_gallery = ".$resultBud['id_budaya']."
+						WHERE id_budaya = ".$resultBud['id_budaya']."
 					";
+					//echo $qrGal; exit();
 			$getGal = mysql_query($qrGal);
 			$gals = array();
 			while($resultGal=mysql_fetch_assoc($getGal)){
 					$gals[] = array(
-									'nama_gallery' => $resultGal['nama_event'],
+									'nama_gallery' => $resultGal['nama_gallery'],
 									'tanggal' => $resultGal['tanggal'],
 									'nama_file' => $resultGal['nama_file_gallery']
 								);
