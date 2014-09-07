@@ -112,7 +112,7 @@
 						);
 
 			$hasil['geometry'] =  $geometry;
-			$hasil['id'] = $resultBud['id_provinsi'];
+			$hasil['id'] = $resultBud['id_budaya'];
 			$hasil['properties'] = $propertiess;
 			$hasilss[] = $hasil;
 		}
