@@ -105,6 +105,7 @@
                             $('#myModal').modal('toggle');
                             var delay=200;
                             setTimeout(function(){
+                                $("body").removeClass("modal-open");
                                 $("#contents").load('detail.php?pages=1&idBud='+e.layer.feature.id);  
                             },delay); 
                             
