@@ -40,8 +40,21 @@
 				echo "&nbsp;<span style='font-size:10px;'>".$kategori."</span>";
 			?>
 		</div>
-		<div style="padding:2px 2px;margin-bottom:10px;height:180px;box-shadow: 2px 3px 2px #888888;">
+		<div style="padding:2px 2px;margin-bottom:30px;height:180px;box-shadow: 2px 3px 2px #888888;">
+			<div style="height:180px;float:left;width:600px;background:red;">a</div>
 			<div id="map" style="width: 300px; height: 170px;float:right"></div>
+		</div>
+		<div style="padding:2px 2px;margin-bottom:30px;height:180px;box-shadow: 2px 3px 2px #888888;">
+			sdsdsds
+		</div>
+		<div style="padding:2px 2px;margin-bottom:30px;height:auto;box-shadow: 2px 3px 2px #888888;">
+			<div style="margin-top:20px;width:900px;height:50px;padding:7px 0px;">
+				<input style="height:35px;margin-bottom:10px;width:700px;float:left;" name="komen" id="komen" type="text" class="form-control" placeholder="Barikan Komentar">
+				<button id="subsub" style="height:35px;line-height: 10px;float:right;width:150px;margin-right:20px" class="btn btn-lg btn-primary btn-block" type="submit">Tambahkan</button>
+			</div>
+			<div style="padding:2px 2px;margin-bottom:30px;height:auto;">
+				aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+			</div>
 		</div>
 	</div>
 </div>		

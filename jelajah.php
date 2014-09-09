@@ -98,7 +98,7 @@
                             $("#budayaConts").html(e.layer.feature.properties.video);
                         });
 
-                        $('#nameBudaya').html(e.layer.feature.properties.city+"&nbsp;<a id='detBud' href='#'>Lihat detail</a>");
+                        $('#nameBudaya').html(e.layer.feature.properties.city+"&nbsp;<a style='font-size:12px;' id='detBud' href='#'>Lihat detail</a>");
                         $('#myModal').modal('show'); 
 
                         $("#detBud").click(function(){
