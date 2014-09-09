@@ -6,8 +6,8 @@
 	$lname = $_POST['lname'];
 	$password = md5($_POST['pass']);
 
-	$qrDaftar ="INSERT INTO user (password,email,nama_depan,nama_belakang,login_time)
-				values ('".$password."','".$email."','".$fname."','".$lname."',1)
+	$qrDaftar ="INSERT INTO user (password,email,nama_depan,nama_belakang,login_time,nama_file_profile)
+				values ('".$password."','".$email."','".$fname."','".$lname."',1,'default')
 				";
 	//echo $qrDaftar;exit();
 	$resultDaftar = mysql_query($qrDaftar);
@@ -17,7 +17,7 @@
 		$_SESSION['fname']=$fname;
 		$_SESSION['lname']=$lname;
 		$_SESSION['login_time']=1;
-		$qrCari = "SELECT id_tab_user FROM user where email = '".$email."'";
+		$qrCari = "SELECT id_tab_user,nama_file_profile FROM user where email = '".$email."'";
 		$getCari = mysql_query($qrCari);
 
 		$resultCari=mysql_fetch_array($getCari);
@@ -25,6 +25,7 @@
 		if($count == 1)
 		{
 			$_SESSION['id_tab_user']=$resultCari['id_tab_user'];
+			$_SESSION['nama_file_profile']=$resultCari['nama_file_profile'];
 		}
 		?>
 		<script type="text/javascript">
