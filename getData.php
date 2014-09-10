@@ -77,8 +77,10 @@
 			$events = array();
 			while($resultEvent=mysql_fetch_assoc($getEvent)){
 					$events[] = array(
+									'id_event' => $resultEvent['id_event'],
 									'nama_event' => $resultEvent['nama_event'],
 									'tanggal' => $resultEvent['tanggal']
+
 								);
 			}
 
@@ -102,7 +104,7 @@
 			
 
 			$propertiess = array(
-							'sejarah' => $resultBud['sejarah'],
+							'sejarah' => $resultBud['preview'],
 	                        'event' => $events,
 	                        'galery' => $gals,
 	                        'video' => $resultBud['nama_file_video'],

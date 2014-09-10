@@ -4,7 +4,7 @@
 			<!-- Modal -->
 			<div id="myModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 			  <div class="modal-dialog modal-lg">
-			    <div style="height:400px;background:grey;margin-left:33px;margin-top:10%;" class="modal-content">
+			    <div style="height:400px;margin-left:33px;margin-top:10%;" class="modal-content">
 			    	<div style="margin-left:33px;border-radius: 3px 3px 0px 0px; " class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 					    <div class="container-fluid">
 					    	<div class="navbar-header">
@@ -14,9 +14,9 @@
 					</div>
 					<div class="container-fluid">
 					    <div class="row">
-					        <div style="border-bottom-left-radius:5px;border-right: 5px solid red;margin-left:34px;" class="col-sm-3 col-md-2 sidebar">
+					        <div style="border-bottom-left-radius:5px;border-right: 5px solid black;margin-left:34px;" class="col-sm-3 col-md-2 sidebar">
 					        	<ul class="nav nav-sidebar">
-						            <li><a id="sejarah" style="margin-right:5px;" href="#">Sejarah</a></li>
+						            <li><a id="sejarah" style="margin-right:5px;" href="#">Preview</a></li>
 						            <li><a id="event" style="margin-right:9px;" href="#">Event</a></li>
 						            <li><a id="gal" style="margin-right:9px;" href="#">Galery Foto</a></li>
 						            <li><a id="vd" style="margin-right:9px;" href="#">Video</a></li>
@@ -74,17 +74,17 @@
                 });
                 myLayer.on('click',function(e){
                     if(e.layer.feature.properties.jenis==2)
-                    {
+                    {   $("#budayaConts").html(e.layer.feature.properties.sejarah);
                         $("#sejarah").click(function(){
                             $("#budayaConts").html(e.layer.feature.properties.sejarah);
                         });
                         $("#event").click(function(){
                             $("#budayaConts").html('');
                             for (var i = 0; i< e.layer.feature.properties.event.length;i++){
-                                $("#budayaConts").append(e.layer.feature.properties.event[i].nama_event);
-                                $("#budayaConts").append('<br/>');
-                                $("#budayaConts").append(e.layer.feature.properties.event[i].tanggal);  
+                                $("#budayaConts").append("<div class='col-lg-3 col-md-4 col-xs-6 thumb'>"+e.layer.feature.properties.event[i].nama_event+"<br/>"+e.layer.feature.properties.event[i].tanggal+"<br/><a onClick='reply_clicks(this.id)' id='detEve"+e.layer.feature.properties.event[i].id_event+"' href='#'>Lihat Detail</a></div>");
+                                //$("#budayaConts").append("<input name ='idEv' type='hidden' class='form-control'  value='"+e.layer.feature.properties.event[i].id_event+"' readonly='yes'>");
                             }
+
                             
                         });
                         $("#gal").click(function(){
@@ -147,6 +147,16 @@
                         });
                 return data;
                 
+            }
+            function reply_clicks(clicked_id)
+            {
+                var idNoM= clicked_id.replace( /^\D+/g, '');
+                $('#myModal').modal('toggle');
+                var delay=200;
+                setTimeout(function(){
+                    $("body").removeClass("modal-open");
+                    $("#contents").load('detail.php?pages=2&idEve='+idNoM);  
+                },delay);
             }
             
 		</script>

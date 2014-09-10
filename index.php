@@ -72,10 +72,10 @@
                 echo 'Pengunjung !
                       </div>
                       <ul style="list-style:none;" class="navbar-nav">
-                        <li class="dropdown">
+                        <li id = "drops" class="dropdown">
                           <a style="color:#e8aa00;height:30px; margin-left:-40px;margin-right:10px;margin-top:-30px" href="#"  data-toggle="dropdown">Masuk</a>
                           <div style="margin-left:-60px;width:280px;margin-top:0px;padding:10px 20px;background:#990000;border:none;border-radius:10px;" class="dropdown-menu">
-                            <form name="login" action="login.php" autocomplete="off" role="form" method="post">
+                            <form id="formLogin" name="login" action="login.php" autocomplete="off" role="form" method="post">
                               <input style="height:35px;margin-bottom:10px;" name="username" id="username" type="text" class="form-control" placeholder="Email" required autofocus>
                               <input style="height:35px;margin-bottom:10px;" name="pass" id="pass" type="password" class="form-control" placeholder="Password" required>
                               <button id="subsub" style="height:35px;line-height: 10px;" class="btn btn-lg btn-primary btn-block" type="submit">Masuk</button>

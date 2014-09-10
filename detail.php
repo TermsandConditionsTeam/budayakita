@@ -10,7 +10,7 @@
 	if($pages==1)
 	{
 		$ids=$_GET['idBud'];
-		$qrBudaya = "SELECT nama_budaya, lat_bud, long_bud, id_kategori 
+		$qrBudaya = "SELECT nama_budaya, lat_bud, long_bud, id_kategori, alamat
 						FROM budaya
 						WHERE id_budaya = ".$ids." ";
 		$getBudaya = mysql_query($qrBudaya);
@@ -26,10 +26,53 @@
 		$kategori = $resultKat['nama_kategori'];
 		$lat = $resultBudaya['lat_bud'];
 		$lng = $resultBudaya['long_bud'];
+		$alamat = $resultBudaya['alamat'];
+
+		$temp = $lat * -1;
+		$tmod = $temp - floor($temp);
+		$tD = $temp -  ($temp - floor($temp)) ;
+		$tM = ($tmod*60) - (($tmod*60) - floor(($tmod*60)));
+		$tS = floor((($tmod*60) - floor(($tmod*60)))*60);
+
+		$lmod = $lng - floor($lng);
+		$lD = $lng -  ($lng - floor($lng)) ;
+		$lM = ($lmod*60) - (($lmod*60) - floor(($lmod*60)));
+		$lS = floor((($lmod*60) - floor(($lmod*60)))*60);
 	}
-	else if($pages = 2)
+	else if($pages == 2)
 	{
 		$ids=$_GET['idEve'];
+		$qrEvent = "SELECT nama_event, lat_ev, long_ev, id_kat_event, alamat
+						FROM event
+						WHERE id_event = ".$ids." ";
+		$getEvent = mysql_query($qrEvent);
+		$resultEvent = mysql_fetch_array($getEvent);
+		$qrKatEvent = "SELECT nama_file_icon, nama_kat
+						FROM kat_event
+						WHERE id_kat_event = ".$resultEvent['id_kat_event']."
+					";
+		$getKatEvent = mysql_query($qrKatEvent);
+		$resultKatEvent=mysql_fetch_array($getKatEvent);
+		$icon = $resultKatEvent['nama_file_icon'];
+		$nama = $resultEvent['nama_event'];
+		$kategori = $resultKatEvent['nama_kat'];
+		$lat = $resultEvent['lat_ev'];
+		$lng = $resultEvent['long_ev'];
+		$alamat = $resultEvent['alamat'];
+
+		$temp = $lat * -1;
+		$tmod = $temp - floor($temp);
+		$tD = $temp -  ($temp - floor($temp)) ;
+		$tM = ($tmod*60) - (($tmod*60) - floor(($tmod*60)));
+		$tS = floor((($tmod*60) - floor(($tmod*60)))*60);
+
+		$lmod = $lng - floor($lng);
+		$lD = $lng -  ($lng - floor($lng)) ;
+		$lM = ($lmod*60) - (($lmod*60) - floor(($lmod*60)));
+		$lS = floor((($lmod*60) - floor(($lmod*60)))*60);
+
+
+
 	}
 ?>
 <div class="container">
@@ -42,7 +85,23 @@
 			?>
 		</div>
 		<div style="padding:2px 2px;margin-bottom:30px;height:180px;box-shadow: 2px 3px 2px #888888;">
-			<div style="height:180px;float:left;width:600px;background:red;">a</div>
+			<div style="height:180px;float:left;width:600px;">
+				<ul>
+					<li>Alamat : <?php echo $alamat ;?></li>
+					<li>Koordinat : <?php echo $tD.'°'.$tM.'′'.$tS.'″';?> S <?php echo $lD.'°'.$lM.'′'.$lS.'″' ;?> E </li>
+				</ul>
+				<?php
+					if(isset($_SESSION['id_tab_user']))
+					{
+						echo '<button id="subCheck" style="height:35px;line-height: 10px;float:right;width:150px;margin-right:20px" class="btn btn-lg btn-primary btn-block" type="submit">Check In</button>';
+					}
+					else
+					{
+						echo '<a href="#" id="logs" style="font-size:12px;height:30px;line-height: 10px;width:150px;margin-left:350px" class="btn btn-lg btn-primary btn-block">Login Untuk Check In</a>';
+					}
+				?>
+				
+			</div>
 			<div id="map" style="width: 300px; height: 170px;float:right"></div>
 		</div>
 		<div style="padding:2px 2px;margin-bottom:30px;height:180px;box-shadow: 2px 3px 2px #888888;">
@@ -51,11 +110,22 @@
 		<div style="padding:2px 2px;margin-bottom:30px;height:auto;box-shadow: 2px 3px 2px #888888;">
 			<form id='comment' method='post'>
 				<div style="margin-bottom:30px;margin-top:20px;width:900px;height:50px;padding:7px 0px;">
-					<input style="height:35px;margin-bottom:10px;width:700px;float:left;" name="isi" id="isi" type="text" class="form-control" placeholder="Barikan Komentar" required>
-					<?php echo "<input name ='iduser' type='hidden' class='form-control'  value='".$_SESSION['id_tab_user']."' readonly='yes'>";?>
-					<?php echo "<input name ='ids' type='hidden' class='form-control'  value='".$ids."' readonly='yes'>";?>
-					<?php echo "<input name ='pages' type='hidden' class='form-control'  value='".$pages."' readonly='yes'>";?>
-					<button id="subsub" style="height:35px;line-height: 10px;float:right;width:150px;margin-right:20px" class="btn btn-lg btn-primary btn-block" type="submit">Tambahkan</button>
+					
+					<?php 
+						if(isset($_SESSION['id_tab_user']))
+						{	
+							echo '<input style="height:35px;margin-bottom:10px;width:700px;float:left;" name="isi" id="isi" type="text" class="form-control" placeholder="Barikan Komentar" required>';
+							echo "<input name ='iduser' type='hidden' class='form-control'  value='".$_SESSION['id_tab_user']."' readonly='yes'>";
+							echo "<input name ='ids' type='hidden' class='form-control'  value='".$ids."' readonly='yes'>";
+							echo "<input name ='pages' type='hidden' class='form-control'  value='".$pages."' readonly='yes'>";
+							echo '<button id="subKomen" style="height:35px;line-height: 10px;float:right;width:150px;margin-right:20px" class="btn btn-lg btn-primary btn-block" type="submit">Tambahkan</button>';
+						}
+						else
+						{
+							echo '<a href="#" id="logs" style="height:50px;line-height: 10px;width:250px;margin-left:350px" class="btn btn-lg btn-primary btn-block">Login Untuk Menambahkan <br/><br/>Komentar</a>';
+						}
+					?>	
+					
 				</div>
 			</form>
 			<div id ='blokComment' style="padding:2px 2px;margin-bottom:30px;height:auto;">
@@ -64,6 +134,7 @@
 					if ($pages==1) {
 						$qrLoadComment =" SELECT id_comm_bud, id_budaya, isi, tanggal, id_tab_user
 											FROM comment_bud
+											WHERE id_budaya = ".$ids."
 										";
 						$getLoadComment = mysql_query($qrLoadComment);
 						while($resultLoadComment=mysql_fetch_assoc($getLoadComment)){
@@ -83,6 +154,29 @@
 									";
 						}
 
+					}
+					elseif ($pages==2) {
+						$qrLoadComment =" SELECT id_comm_ev, id_event, isi, tanggal, id_tab_user
+											FROM comment_ev
+											WHERE id_event = ".$ids."
+										";
+						$getLoadComment = mysql_query($qrLoadComment);
+						while($resultLoadComment=mysql_fetch_assoc($getLoadComment)){
+								$qrUser = "SELECT nama_depan, nama_belakang, nama_file_profile
+											FROM user
+											WHERE id_tab_user = ".$resultLoadComment['id_tab_user']."
+											";
+								$getUser = mysql_query($qrUser);
+								$resultUser=mysql_fetch_array($getUser);
+								echo "
+										<div style='margin-bottom:20px;'>
+											<img title='".$resultUser['nama_depan']." ".$resultUser['nama_belakang']."' style='float:left;margin-right:10px;' src='assets/user/".$resultLoadComment['id_tab_user']."/".$resultUser['nama_file_profile'].".png' width='50px' height='50px'>
+											<span style='margin-top:-20px;'>".$resultLoadComment['isi']."</span>
+										</div>
+										<hr>
+										<br/>
+									";
+						}
 					}
 					
 				?>
@@ -145,8 +239,8 @@
 
 
                 //comment submit
-                var form = $('form');
-                var submit = $('#submit');
+                var form = $('#comment');
+                var submit = $('#subKomen');
 
                 form.on('submit', function(e){
                 	e.preventDefault();
@@ -169,5 +263,10 @@
 				      	}
 
                 	});
+                });
+
+                $('#logs').click(function(e){
+                	e.stopPropagation();
+                	$("#drops").addClass('open');
                 });
 </script>

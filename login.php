@@ -7,7 +7,6 @@
 
 	$qrlogin = "SELECT id_tab_user, email, nama_depan, nama_belakang,login_time,nama_file_profile FROM user where email = '".$email."' AND password = '".$pass."'";
 	$getUser = mysql_query($qrlogin);
-
 	$result=mysql_fetch_array($getUser);
 	$count=mysql_num_rows($getUser);
 	if($count == 1)
