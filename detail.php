@@ -265,8 +265,56 @@
                 	});
                 });
 
+                //login
                 $('#logs').click(function(e){
                 	e.stopPropagation();
                 	$("#drops").addClass('open');
                 });
+
+
+                //checkin
+                $('#subCheck').click(function(e){
+                	e.preventDefault();
+			        e.stopPropagation();
+			        map.locate();
+                });
+
+                map.on('locationfound', function(e){
+                	var form = $('#comment');
+                	var submit = $('#subCheck');
+                	var myLat = e.latlng.lat;
+                	var myLng = e.latlng.lng;
+                	/*if((myLat!=lat)||(myLng!=lng))
+                	{
+                		alert('tidak sama');
+                	}
+                	else
+                	{
+                		alert('sama');
+                	}*/
+                	//e.preventDefault();
+                	$.ajax({
+                		url : 'checkin.php',
+                		type : 'POST',
+                		cache : false,
+                		data : form.serialize(),
+                		beforeSend: function(){
+					        submit.val('Sedang Check In...').attr('disabled', 'disabled');
+					    },
+					    success: function(data){
+					        
+					        // reset form and button
+					        form.trigger('reset');
+					        document.getElementById("subCheck").innerHTML = "Checked In";
+					        alert('Check In berhasil');
+				      	}
+
+                	});
+                	
+                });
+                map.on('locationerror', function() {
+				    alert('Posisi Anda Tidak Dapat Ditemukan');
+				});
+
+
 </script>
