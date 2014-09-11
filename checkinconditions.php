@@ -7,7 +7,7 @@
  	
  	function cekBanyakCekin($id_tab_user)
  	{
- 		$qr = "SELECT checkintime
+ 		$qr = "SELECT checkin_time
  				FROM user
  				WHERE id_tab_user = ".$id_tab_user."
  				";
@@ -54,7 +54,7 @@
  	{
  		$qr = "SELECT *
  				FROM chekin_ev
- 				WHERE id_tab_user = ".$id_tab_user." AND id_ev = ".$idev."
+ 				WHERE id_tab_user = ".$id_tab_user." AND id_event = ".$idev."
  				";
  		$get = mysql_query($qr);
 		$result=mysql_fetch_array($get);
@@ -77,7 +77,7 @@
  	{
  		$qr = "SELECT *
  				FROM chekin_per
- 				WHERE id_tab_user = ".$id_tab_user." AND id_per = ".$idper."
+ 				WHERE id_tab_user = ".$id_tab_user." AND id_permainan = ".$idper."
  				";
  		$get = mysql_query($qr);
 		$result=mysql_fetch_array($get);

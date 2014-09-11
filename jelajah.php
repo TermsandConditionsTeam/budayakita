@@ -142,7 +142,7 @@
                             dataType: "text",
                             success: function (resp)
                               {
-                                  data = JSON.parse(resp);
+                                data = JSON.parse(resp);
                               }
                         });
                 return data;

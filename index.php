@@ -120,7 +120,15 @@
               <li class="dropdown">
                 <a style="height:30px; margin-right:10px;color:white;margin-top:-10px" href="#" data-toggle="dropdown">Permainan <b class="caret"></b></a>
                 <ul style="margin-top:10px;border:none;background:#ffcc00;" class="dropdown-menu">
-                  <li><a style="color:white"; href="#">Cari Permainan</a></li>
+                  <li><a id="cariP" style="color:white"; href="#">Cari Permainan</a></li>
+                  <?php 
+                    if(isset($_SESSION['email']))
+                    {
+                      ?>
+                        <li><a id="tambahP" style="color:white"; href="#">Buat Permainanmu Sendiri!</a></li>
+                      <?php
+                    }
+                  ?>
                 </ul>
               </li>
               <li style="margin-right:10px"><a style="color:white;" href="#">Bantuan</a></li>
@@ -209,6 +217,12 @@
         });
       $("#jelajah").click(function(){
           $("#contents").load("jelajah.php");
+        });
+      $("#cariP").click(function(){
+          $("#contents").load("permainan.php?pageId=1");
+        });
+      $("#tambahP").click(function(){
+          $("#contents").load("permainan.php?pageId=2");
         });
     </script>
   </body>

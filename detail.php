@@ -76,6 +76,37 @@
 
 
 	}
+	else if($pages == 3)
+	{
+		$ids=$_GET['idPer'];
+		$qrPermainan = "SELECT nama_per, lat_per, long_per, id_tab_user, nama_file_icon, favorite, clue, difficult, tanggal
+						FROM permainan
+						WHERE id_permainan = ".$ids." ";
+		$getPermainan = mysql_query($qrPermainan);
+		$resultPermainan = mysql_fetch_array($getPermainan);
+		
+		$icon = $resultPermainan['nama_file_icon'];
+		$nama = $resultPermainan['nama_per'];
+		$kategori = 'Permainan';
+		$lat = $resultPermainan['lat_per'];
+		$lng = $resultPermainan['long_per'];
+		$mine = $resultPermainan['id_tab_user'];
+		$alamat = 'Tidak Diketahui';
+
+		$temp = $lat * -1;
+		$tmod = $temp - floor($temp);
+		$tD = $temp -  ($temp - floor($temp)) ;
+		$tM = ($tmod*60) - (($tmod*60) - floor(($tmod*60)));
+		$tS = floor((($tmod*60) - floor(($tmod*60)))*60);
+
+		$lmod = $lng - floor($lng);
+		$lD = $lng -  ($lng - floor($lng)) ;
+		$lM = ($lmod*60) - (($lmod*60) - floor(($lmod*60)));
+		$lS = floor((($lmod*60) - floor(($lmod*60)))*60);
+
+
+
+	}
 ?>
 <div class="container">
 	<div class="isi">
@@ -104,13 +135,29 @@
 							{
 								$ever = $conditions->cekBanyakCekinPermainanSpec($ids, $_SESSION['id_tab_user']);
 							}
-							
+
 							if ($ever > 0) {
-								echo '<button id="subCheck" style="height:35px;line-height: 10px;float:right;width:150px;margin-right:20px" class="btn btn-lg btn-primary btn-block" type="submit" disabled>Anda Sudah Check in</button>';
+								echo '<button id="subCheck" style="font-size:10px;height:35px;line-height: 10px;float:right;width:150px;margin-right:20px" class="btn btn-lg btn-primary btn-block" type="submit" disabled>Anda Sudah Check in</button>';
 							}
 							else
 							{
-								echo '<button id="subCheck" style="height:35px;line-height: 10px;float:right;width:150px;margin-right:20px" class="btn btn-lg btn-primary btn-block" type="submit">Check In</button>';		
+								if($pages==3)
+								{
+									if($mine==$_SESSION['id_tab_user'])
+									{
+										echo '<button id="subCheck" style="font-size:10px;height:35px;line-height: 10px;float:right;width:150px;margin-right:20px" class="btn btn-lg btn-primary btn-block" type="submit" disabled>Anda Pemilik Permainan</button>';
+									}
+									else
+									{
+										echo '<button id="subCheck" style="height:35px;line-height: 10px;float:right;width:150px;margin-right:20px" class="btn btn-lg btn-primary btn-block" type="submit">Check In</button>';	
+									}	
+								}
+								else
+								{
+									echo '<button id="subCheck" style="height:35px;line-height: 10px;float:right;width:150px;margin-right:20px" class="btn btn-lg btn-primary btn-block" type="submit">Check In</button>';	
+								}
+								
+										
 							}
 						}
 						else
@@ -183,6 +230,29 @@
 						$qrLoadComment =" SELECT id_comm_ev, id_event, isi, tanggal, id_tab_user
 											FROM comment_ev
 											WHERE id_event = ".$ids."
+										";
+						$getLoadComment = mysql_query($qrLoadComment);
+						while($resultLoadComment=mysql_fetch_assoc($getLoadComment)){
+								$qrUser = "SELECT nama_depan, nama_belakang, nama_file_profile
+											FROM user
+											WHERE id_tab_user = ".$resultLoadComment['id_tab_user']."
+											";
+								$getUser = mysql_query($qrUser);
+								$resultUser=mysql_fetch_array($getUser);
+								echo "
+										<div style='margin-bottom:20px;'>
+											<img title='".$resultUser['nama_depan']." ".$resultUser['nama_belakang']."' style='float:left;margin-right:10px;' src='assets/user/".$resultLoadComment['id_tab_user']."/".$resultUser['nama_file_profile'].".png' width='50px' height='50px'>
+											<span style='margin-top:-20px;'>".$resultLoadComment['isi']."</span>
+										</div>
+										<hr>
+										<br/>
+									";
+						}
+					}
+					elseif ($pages==3) {
+						$qrLoadComment =" SELECT id_comm_per, id_permainan, isi, tanggal, id_tab_user
+											FROM comment_per
+											WHERE id_permainan = ".$ids."
 										";
 						$getLoadComment = mysql_query($qrLoadComment);
 						while($resultLoadComment=mysql_fetch_assoc($getLoadComment)){
