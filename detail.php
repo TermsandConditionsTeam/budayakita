@@ -1,12 +1,14 @@
 <?php
 	include 'dbcon.php';
+	include 'checkinconditions.php';
+
 	session_start();
 	$pages=$_GET['pages'];
-
+	$conditions = new CheckInConditions();
 	$icon;
 	$nama;
 	$kategori;
-
+	$ever;
 	if($pages==1)
 	{
 		$ids=$_GET['idBud'];
@@ -93,7 +95,29 @@
 				<?php
 					if(isset($_SESSION['id_tab_user']))
 					{
-						echo '<button id="subCheck" style="height:35px;line-height: 10px;float:right;width:150px;margin-right:20px" class="btn btn-lg btn-primary btn-block" type="submit">Check In</button>';
+						if(($pages ==2) || ($pages ==3) )
+						{
+							if ($pages ==2) {
+								$ever = $conditions->cekBanyakCekinEventSpec($ids, $_SESSION['id_tab_user']);
+							}
+							else if ($pages ==3)
+							{
+								$ever = $conditions->cekBanyakCekinPermainanSpec($ids, $_SESSION['id_tab_user']);
+							}
+							
+							if ($ever > 0) {
+								echo '<button id="subCheck" style="height:35px;line-height: 10px;float:right;width:150px;margin-right:20px" class="btn btn-lg btn-primary btn-block" type="submit" disabled>Anda Sudah Check in</button>';
+							}
+							else
+							{
+								echo '<button id="subCheck" style="height:35px;line-height: 10px;float:right;width:150px;margin-right:20px" class="btn btn-lg btn-primary btn-block" type="submit">Check In</button>';		
+							}
+						}
+						else
+						{
+							echo '<button id="subCheck" style="height:35px;line-height: 10px;float:right;width:150px;margin-right:20px" class="btn btn-lg btn-primary btn-block" type="submit">Check In</button>';	
+						}
+						
 					}
 					else
 					{
